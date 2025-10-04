@@ -2,11 +2,14 @@ import streamlit as st
 import pandas as pd
 import sys
 
-from model_4 import compute_damage_score, estimate_loss_from_score, load_data
+from main_model import compute_damage_score, estimate_loss_from_score, load_data
 
-DATA_PATH = "hackharvard-25-1\\world_tsunamis.csv"
+DATA_PATH = "world_tsunamis.csv"
 df = load_data(DATA_PATH)
 
+def save_to_json(results_df, filename="tsunami_results.json"):
+    results_df.to_json(filename, orient='records', indent=4)
+    print(f"Saved JSON: {filename}")
 
 def run_streamlit_ui():
     st.title("Tsunami Impact Simulator")
@@ -76,6 +79,7 @@ def run_cli_ui():
     }
 
     scenario = pd.DataFrame({
+        "Location": [city],
         "Earthquake Magnitude": [mag],
         "Maximum Water Height (m)": [height],
         "Number of Runups": [runups],
@@ -92,6 +96,19 @@ def run_cli_ui():
     print(f"Region: {city}")
     print(f"Damage Score: {damage_score:.2f}")
     print(f"Estimated Loss: ${estimated_loss:,.0f}")
+    
+    save_option = input("Save results to JSON? (y/n): ").strip().lower()
+    if save_option == 'y':
+        result_row = pd.DataFrame([{
+            "Location": city,
+            "Earthquake Magnitude": mag,
+            "Maximum Water Height (m)": height,
+            "Number of Runups": runups,
+            "Deposits": deposits,
+            "Damage Score": damage_score,
+            "Estimated Loss": estimated_loss
+        }])
+        save_to_json(result_row)
 
 
 if __name__ == "__main__":

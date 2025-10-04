@@ -114,22 +114,6 @@ def compute_calibration_factor_from_loss(score, actual_loss, total_exposed_value
         return None
     return float(actual_loss) / (score * float(total_exposed_value_usd))
 
-
-def _adjust_weights_minimal_change(x_vec, w0):
-    """
-    Given a normalized feature vector x_vec (length 4) and an initial weight vector w0 (length 4),
-    find a new weight vector w that is as close as possible to w0 (L2) while satisfying two
-    equality constraints: w.dot(x_vec) == target (provided via b in caller) and sum(w) == 1.
-
-    For single-example calibration we will use an analytic projection onto the linear equality
-    constraints. Caller must provide the target enforcement by replacing the first row of A and b.
-    Here we implement the unconstrained projection (no non-negativity). Caller may clip negatives
-    and renormalize afterward.
-    """
-    # This helper is a placeholder for the analytic projection used below; kept for clarity.
-    return w0
-
-
 def compute_adjusted_weights_from_example(x_vec, w0, target_score, enforce_nonneg=True):
     """
     Solve for a new weight vector w that is as close as possible to w0 (minimize ||w-w0||^2)
