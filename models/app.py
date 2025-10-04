@@ -112,7 +112,12 @@ def run_cli_ui():
 
 
 if __name__ == "__main__":
-    if any("streamlit" in arg for arg in sys.argv):
-        run_streamlit_ui()
-    else:
+    try:
+        import streamlit.runtime.scriptrunner as scriptrunner
+        from streamlit.runtime.scriptrunner import get_script_run_ctx
+        if get_script_run_ctx() is not None:
+            run_streamlit_ui()
+        else:
+            run_cli_ui()
+    except Exception:
         run_cli_ui()

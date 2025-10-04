@@ -34,9 +34,11 @@ DEFAULT_WEIGHTS = {
 
 # ---------- Utility functions ----------
 def load_data(path=DEFAULT_INPUT):
+    print("Loading data...")
     if not os.path.exists(path):
         raise FileNotFoundError(f"CSV not found: {path}")
     df = pd.read_csv(path)
+    print("Data loaded. Rows:", len(df))
     return df
 
 def normalize_series(s):
