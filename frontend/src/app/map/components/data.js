@@ -74,7 +74,7 @@ export const cities = [
         description: "Cambridge is an inland city located along the Charles River, separated from the open Atlantic Ocean by Boston Harbor and a series of coastal barriers. Its position well within Massachusetts Bay and its low elevation near freshwater channels mean it is not directly exposed to tsunami hazards. While the broader New England coastline could, in theory, experience minor tsunami effects from distant seismic events or submarine landslides, Cambridge's distance from the coast and protection by Boston's urban geography make such impacts extremely unlikely.\n\nHistorically, there are no recorded instances of tsunami damage in Cambridge. The most significant local water-related risks stem from coastal storm surges and river flooding during hurricanes or nor'easters. Local infrastructure, including the Charles River Dam and elevated embankments, provide additional protection. As a result, tsunami risk assessments for Cambridge rank it as effectively negligible compared with more directly exposed Atlantic coastal areas.",
         imageFolder: "cambridge",
         images: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
-        preparedness: "tbd",
+        preparedness: "https://hackharvardsimulwave.web.app/",
     },
     {
         name: "Sydney, Australia",
@@ -124,6 +124,6 @@ export const cities = [
         description: "Dubai lies along the southeastern Persian Gulf, a semi-enclosed body of water bordered by relatively stable continental crust. This geography makes it largely protected from tsunamis, as there are no nearby subduction zones capable of generating major seismic sea waves. The Strait of Hormuz at the Gulf's entrance and the shallow seabed further dissipate energy from any potential distant disturbances.\n\nHistorically, Dubai has not experienced any recorded tsunamis. The region's greatest coastal hazards arise from extreme weather, including storm surges and high winds. Geological assessments show that only a massive seismic event in the Arabian Sea — such as one off the coast of Iran or Pakistan — could produce measurable waves in the Persian Gulf, and even those would be small. Dubai's coastal development projects incorporate robust engineering standards and monitoring systems, ensuring resilience against both natural and man-made marine disturbances.",
         imageFolder: "dubai",
         images: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
-        preparedness: "tbd",
+        preparedness: "https://hackharvard-6db70.web.app/",
     },
 ];

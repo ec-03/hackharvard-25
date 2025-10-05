@@ -44,6 +44,15 @@ export default function CityOverlayClient({ city }) {
     ? matchedCity.preparedness
     : `Preparedness: Practical tips for ${displayName} residents and visitors including evacuation routes, safe zones, and contact points.`;
 
+  // Helper function to detect if preparedness is a URL
+  const isPreparednessUrl = (preparedness) => {
+    if (!preparedness || typeof preparedness !== 'string') return false;
+    const trimmed = preparedness.trim();
+    return trimmed.startsWith('http://') || trimmed.startsWith('https://');
+  };
+
+  const preparednessIsUrl = matchedCity && isPreparednessUrl(matchedCity.preparedness);
+
   const pages = [
     firstPageText,
     secondPageText,
@@ -207,6 +216,11 @@ export default function CityOverlayClient({ city }) {
               )}
             </div>
           </div>
+        ) : pageIndex === 2 && preparednessIsUrl ? (
+          // Don't show URL text when it's displayed as iframe
+          <div className="text-center text-gray-600">
+            <p>Interactive simulation below:</p>
+          </div>
         ) : (
           linkify(pages[pageIndex])
         )}
@@ -226,8 +240,22 @@ export default function CityOverlayClient({ city }) {
               }}
             />
           </div>
+        ) : pageIndex === 2 && preparednessIsUrl ? (
+          <div className="w-full h-[65vh] flex justify-center items-center bg-gray-100">
+            <iframe
+              src={matchedCity.preparedness.trim()}
+              title={`${display} Preparedness Resources`}
+              width="100%"
+              height="100%"
+              style={{
+                border: "none",
+                borderRadius: "12px",
+                boxShadow: "0 0 10px rgba(0,0,0,0.2)",
+              }}
+            />
+          </div>
         ) : (
-          // when not on page 2, keep the area small and empty so it doesn't fill the overlay
+          // when not on page 2 or 3 with URL, keep the area small and empty so it doesn't fill the overlay
           <div className="w-full h-24 flex items-center justify-center bg-transparent text-lg text-gray-500">
             {/* intentionally empty */}
           </div>
