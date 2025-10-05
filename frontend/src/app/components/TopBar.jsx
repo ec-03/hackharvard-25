@@ -9,7 +9,7 @@ export default function TopBar() {
     { label: "Introduction", href: "/" },
     { label: "Map", href: "/map" },
     { label: "About Us", href: "/about" },
-    { label: "Source", href: "/source" },
+    { label: "Source", href: "https://github.com/ec-03/hackharvard-25" },
   ];
 
   // detect city overlay route like /map/jakarta

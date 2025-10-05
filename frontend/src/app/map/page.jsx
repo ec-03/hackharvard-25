@@ -1,5 +1,4 @@
 "use client";
-import TsunamiMap from "../components/TsunamiMap";
 import Link from "next/link";
 
 export default function MapHome() {

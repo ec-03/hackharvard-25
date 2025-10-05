@@ -3,11 +3,20 @@ import { useState, useRef, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useParams } from "next/navigation";
 import { cities } from "./data";
+import { normalizeName } from "../../../lib/nameUtils";
 
 export default function CityMap({ onSelect }) {
   // use relative coordinates (0..1) so markers keep correct positions when the map resizes
   const params = useParams();
-  const selected = params?.city ? String(params.city).toLowerCase() : null;
+  // decode params.city will be the encoded route segment; compare normalized forms
+  let selected = null;
+  if (params?.city) {
+    try {
+      selected = normalizeName(decodeURIComponent(String(params.city)));
+    } catch (e) {
+      selected = normalizeName(String(params.city));
+    }
+  }
 
   // animation controls for the map wrapper (zoom + pan)
   const controls = useAnimation();
@@ -33,7 +42,7 @@ export default function CityMap({ onSelect }) {
       await controls.start({ scale: 5, transition: { duration: 0.6, ease: "easeInOut" } });
       // compute pixel translate values
       const pxX = width * (0.1 - city.x);
-      const pxY = height * (0.7 - city.y);
+      const pxY = height * (0.5 - city.y);
       // animate to the pixel translate (x/y accept numbers)
       await controls.start({ x: pxX, y: pxY, transition: { duration: 0.6, ease: "easeInOut" } });
 
@@ -86,7 +95,8 @@ export default function CityMap({ onSelect }) {
         />
 
         {cities.map((city) => {
-          const isSelected = selected === city.name.toLowerCase();
+          const isSelected = selected === normalizeName(city.name);
+          const baseColor = city.color === "blue" ? "#3b82f6" : "#f59e0b"; // blue or yellow
           return (
             // wrapper positions the marker using percentages and centers it with a static transform
             <div
@@ -103,7 +113,7 @@ export default function CityMap({ onSelect }) {
                 style={{ width: 12, height: 12 }}
                 animate={{
                   scale: isSelected ? 1.8 : 1,
-                  backgroundColor: isSelected ? "#ef4444" : "#f59e0b",
+                  backgroundColor: isSelected ? "#ef4444" : baseColor,
                 }}
                 transition={{ type: "spring", stiffness: 800, damping: 20 }}
                 whileHover={{ scale: isSelected ? 2 : 1.3 }}
