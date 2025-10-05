@@ -20,7 +20,7 @@ dummy_vulnerability = {
     "dubai_uae": 0.70,
 }
 
-CITY_COORDS = {
+city_coordinates = {
     "crescent_city_ca": (41.75, -124.2),
     "sendai_japan": (38.26, 140.87),
     "aceh_indonesia": (5.55, 95.32),
