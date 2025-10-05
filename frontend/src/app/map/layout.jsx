@@ -22,13 +22,23 @@ export default function MapLayout({ children }) {
 
   const url = "http://localhost:5001/api/thinkhazard/tokyo";
   return (
-    <div className="relative w-full h-screen">
+    <motion.div 
+      className="relative w-full h-screen bg-gradient-to-br from-blue-100 via-blue-200 to-sky-200"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1, ease: "easeInOut" }}
+    >
       {/* center the map container so the map sits in the middle of the screen */}
-      <div className="absolute inset-0 z-0 flex items-center justify-center">
+      <motion.div 
+        className="absolute inset-0 z-0 flex items-center justify-center"
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
+      >
         <CityMap onSelect={handleSelect} />
-      </div>
+      </motion.div>
 
       <div className="relative z-10">{children}</div>
-    </div>
+    </motion.div>
   );
 }

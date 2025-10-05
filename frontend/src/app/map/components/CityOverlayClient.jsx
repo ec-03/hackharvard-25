@@ -193,7 +193,7 @@ export default function CityOverlayClient({ city }) {
             {/* slideshow */}
             <div className="w-full mb-4 rounded overflow-hidden bg-gray-200">
               {images && images.length ? (
-                <div className="relative w-full h-[45vh]">
+                <div className="relative w-full h-[35vh]">
                   <img src={images[slideIndex]} alt={`${display} image ${slideIndex + 1}`} className="w-full h-full object-cover" />
                   <div className="absolute bottom-2 left-2 flex gap-2">
                     <button onClick={prevSlide} className="px-2 py-1 bg-white/80 rounded">◀</button>
@@ -201,7 +201,7 @@ export default function CityOverlayClient({ city }) {
                   </div>
                 </div>
               ) : (
-                <div className="w-full h-[45vh] flex items-center justify-center text-sm text-gray-500">No preview images</div>
+                <div className="w-full h-[35vh] flex items-center justify-center text-sm text-gray-500">No preview images</div>
               )}
             </div>
           </div>
