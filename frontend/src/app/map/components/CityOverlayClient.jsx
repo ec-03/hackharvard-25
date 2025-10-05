@@ -12,7 +12,7 @@ export default function CityOverlayClient({ city }) {
   const [pageIndex, setPageIndex] = useState(0);
 
   // simple paginated content per city; expand or replace with fetched content later
-  const displayName = city && city.length ? city[0].toUpperCase() + city.slice(1) : "Error";
+  const displayName = city && city.length ? city.toUpperCase() : "ERROR";
 
   // find matching city entry from data.js using normalized names
   const rawCityProp = city || "";
@@ -145,8 +145,10 @@ export default function CityOverlayClient({ city }) {
       exit={{ opacity: 0, y: 50 }}
       transition={{ duration: 0.4, ease: "easeInOut" }}
     >
-      <div className="flex items-start justify-between">
-        <h2 className="text-3xl font-semibold">{display}</h2>
+      <div className="flex items-start justify-between pl-4 pt-3">
+        <h2 className="text-5xl font-semibold" style={{fontFamily: 'var(--font-lobster)'}}>
+          {display}
+        </h2>
         <div className="flex gap-2 items-center">
           <div className="flex items-center text-lg text-gray-600 mr-2">{pageIndex + 1} / {pages.length}</div>
           <button

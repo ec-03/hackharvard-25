@@ -8,9 +8,11 @@ export default function HomePage() {
       <div className="container mx-auto px-6 lg:px-20 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <div>
-            <h1 className="text-4xl lg:text-5xl font-extrabold text-slate-900">Tsunami Risk Explorer</h1>
+            <div className="mb-4">
+              <img src="/logo.png" alt="SimulWave Logo" className="h-50 w-auto" />
+            </div>
             <p className="mt-4 text-lg text-slate-700 max-w-xl">
-              Interactive map and city overlays showing coastal hazard information, preparedness tips, and localized tsunami data.
+              Interactive map displaying information regarding tsunami history and damage in coastal cities.
             </p>
 
             <div className="mt-6 flex flex-col sm:flex-row gap-3">
@@ -21,8 +23,6 @@ export default function HomePage() {
                 About
               </Link>
             </div>
-
-            <p className="mt-6 text-sm text-slate-500">Built for demo — click a city on the map to open an overlay without unmounting the map.</p>
           </div>
 
           <div className="w-full h-96 rounded-lg overflow-hidden shadow-lg bg-white">

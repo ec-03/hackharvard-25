@@ -21,8 +21,10 @@ export default function TopBar() {
       animate={overlayActive ? { y: -120, opacity: 0, pointerEvents: "none" } : { y: 0, opacity: 1, pointerEvents: "auto" }}
       transition={{ duration: 0.6, ease: "easeInOut" }}
     >
-      <nav className="mx-auto max-w-4xl bg-white/90 backdrop-blur rounded-xl shadow-lg border h-[5vh] px-4 py-2 relative">
-        <div className="font-semibold">hi victoria</div>
+      <nav className="mx-auto max-w-4xl bg-white/90 backdrop-blur rounded-xl shadow-lg border h-[5vh] px-4 py-0 relative">
+        <div className="flex items-start">
+          <img src="/logo.png" alt="SimulWave Logo" className="h-10 w-auto" />
+        </div>
 
         {/* centered tabs */}
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
