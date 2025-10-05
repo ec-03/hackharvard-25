@@ -12,7 +12,7 @@ export default function CityOverlayClient({ city }) {
   const [pageIndex, setPageIndex] = useState(0);
 
   // simple paginated content per city; expand or replace with fetched content later
-  const displayName = city && city.length ? city.toUpperCase() : "ERROR";
+  const displayName = city && city.length ? city : "ERROR";
 
   // find matching city entry from data.js using normalized names
   const rawCityProp = city || "";
